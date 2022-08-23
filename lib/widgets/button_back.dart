@@ -13,7 +13,6 @@ class ButtonBack extends StatelessWidget {
         child: Container(
           width: 45,
           height: 45,
-          margin: const EdgeInsets.only(top: 25, left: 25),
           padding: const EdgeInsets.only(left: 5),
           decoration: BoxDecoration(
             color: primaryColor,
