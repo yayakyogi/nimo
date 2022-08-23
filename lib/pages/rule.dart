@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nimo/pages/gamepage.dart';
+import 'package:nimo/pages/choose_caracter.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/utils/page_transition.dart';
+import 'package:nimo/widgets/background_transparent.dart';
 import 'package:nimo/widgets/button_back.dart';
 import 'package:nimo/widgets/button_submit.dart';
 
@@ -32,11 +33,7 @@ class _RuleState extends State<Rule> {
 
     // widget bg black opacity
     Widget bgOpacity() {
-      return Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: Colors.black.withOpacity(0.4),
-      );
+      return const BackgroundTransparent();
     }
 
     // widget title
@@ -89,7 +86,7 @@ class _RuleState extends State<Rule> {
       return ButtonSubmit(
         onPressed: () => Navigator.push(
           context,
-          PageTransition(widget: const Gamepage()),
+          PageTransition(widget: const ChooseCaracter()),
         ),
         title: 'Mulai',
       );
