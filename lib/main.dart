@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nimo/pages/homepage.dart';
-import 'package:nimo/pages/setting.dart';
+import 'package:nimo/pages/home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "NIMO",
       theme: ThemeData(),
-      home: Homepage(),
+      home: const Home(),
     );
   }
 }
