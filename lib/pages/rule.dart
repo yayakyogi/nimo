@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nimo/pages/choose_caracter.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/utils/page_transition.dart';
@@ -14,6 +15,22 @@ class Rule extends StatefulWidget {
 }
 
 class _RuleState extends State<Rule> {
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+    ]);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     // text rule
@@ -39,7 +56,7 @@ class _RuleState extends State<Rule> {
     // widget title
     Widget title() {
       return Container(
-        margin: const EdgeInsets.only(bottom: 25),
+        margin: const EdgeInsets.only(bottom: 25, top: 30),
         child: Text(
           'Aturan Permainan',
           style: fontPlay.copyWith(
@@ -64,10 +81,10 @@ class _RuleState extends State<Rule> {
         child: Column(
           children: [
             ruleContent(
-              rule: '1. Pilih karakter yang anda suka',
+              rule: '1. Pilih karakter',
             ),
             ruleContent(
-              rule: '2. Pilih soal yang disediakan',
+              rule: '2. Pilih materi & soal yang disediakan',
             ),
             ruleContent(
               rule: '3. Jawab pertanyaan secara urut sesuai level',
@@ -83,12 +100,25 @@ class _RuleState extends State<Rule> {
 
     // widget button submit
     Widget buttonSubmit() {
-      return ButtonSubmit(
-        onPressed: () => Navigator.push(
-          context,
-          PageTransition(widget: const ChooseCaracter()),
-        ),
-        title: 'Mulai',
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ButtonSubmit(
+            onPressed: () => Navigator.push(
+              context,
+              PageTransition(widget: const ChooseCaracter()),
+            ),
+            title: 'Mulai',
+          ),
+          const SizedBox(width: 20),
+          ButtonSubmit(
+            onPressed: () => Navigator.push(
+              context,
+              PageTransition(widget: const ChooseCaracter()),
+            ),
+            title: 'Ketentuan',
+          ),
+        ],
       );
     }
 
@@ -96,7 +126,6 @@ class _RuleState extends State<Rule> {
     Widget body() {
       return Column(
         children: [
-          const ButtonBack(),
           title(),
           rule(),
           buttonSubmit(),

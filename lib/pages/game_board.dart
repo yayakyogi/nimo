@@ -1,5 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nimo/bloc/cpmk_active/cpmk_active_bloc.dart';
 import 'package:nimo/themes.dart';
+import 'package:nimo/utils/test.dart';
+import 'package:nimo/widgets/button_submit.dart';
+import 'package:nimo/widgets/item_soal.dart';
 
 class GameBoard extends StatefulWidget {
   const GameBoard({Key? key}) : super(key: key);
@@ -9,13 +16,79 @@ class GameBoard extends StatefulWidget {
 }
 
 class _GameBoardState extends State<GameBoard> {
+  Test test = Test();
+
+  int levelActive = 0;
+
+  Future dialog() {
+    log('test ' + test.toString());
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: primaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: [
+                Text(
+                  'Soal 1',
+                  style: fontPlay.copyWith(
+                    fontSize: 20,
+                    color: whiteColor,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'Apa itu moral?',
+                  style: fontPlay.copyWith(
+                    fontSize: 16,
+                    color: whiteColor,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 20),
+                ItemSoal(
+                  soal: '1 Apa itu moral',
+                  isChoosen: true,
+                  onPressed: () {},
+                ),
+                ItemSoal(
+                  soal: '2 Apa itu moral',
+                  isChoosen: false,
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            Center(
+              child: ButtonSubmit(
+                onPressed: () {
+                  setState(() {
+                    levelActive++;
+                  });
+                  Navigator.pop(context);
+                },
+                title: 'Simpan Jawaban',
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   // icon logo
   Widget iconLogo() {
     return Image.asset('assets/icons/ic_logo.png', width: 100);
   }
 
   // widget karakter
-  Widget caracter() {
+  Widget caracter({String caracter = ''}) {
     return Column(
       children: [
         Container(
@@ -28,7 +101,7 @@ class _GameBoardState extends State<GameBoard> {
             color: primaryColor,
             border: Border.all(color: whiteColor),
           ),
-          child: Image.asset('assets/images/caracter_1.png'),
+          child: Image.asset('assets/images/$caracter'),
         ),
         Text(
           'Caracter 1',
@@ -96,16 +169,17 @@ class _GameBoardState extends State<GameBoard> {
   }
 
   // widget level
-  Widget level({required int level, required bool isActive}) {
+  Widget level({
+    required String title,
+    required bool isActive,
+    required Function() onPressed,
+  }) {
     return GestureDetector(
-      onTap: !isActive
-          ? null
-          : () {
-              print('buka soal');
-            },
+      onTap: !isActive ? null : onPressed,
       child: Container(
-        width: 85,
+        width: 200,
         height: 42,
+        margin: const EdgeInsets.only(bottom: 15),
         decoration: BoxDecoration(
           color: isActive ? primaryColor : secondaryColor,
           borderRadius: BorderRadius.circular(20),
@@ -113,7 +187,7 @@ class _GameBoardState extends State<GameBoard> {
         ),
         child: Center(
           child: Text(
-            'Level $level',
+            title,
             style: fontPermanentMarker.copyWith(
               fontSize: 16,
               color: whiteColor,
@@ -126,12 +200,12 @@ class _GameBoardState extends State<GameBoard> {
 
   // widget line
   Widget lineGreen() {
-    return Image.asset('assets/icons/ic_line.png', height: 12);
+    return Image.asset('assets/icons/ic_line.png', height: 12, width: 50);
   }
 
   // * MENU
   // menu kiri
-  Widget leftMenu() {
+  Widget leftMenu({String caracterImg = ''}) {
     return Container(
       padding: const EdgeInsets.only(top: 20, right: 10),
       width: 120,
@@ -139,7 +213,7 @@ class _GameBoardState extends State<GameBoard> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           iconLogo(),
-          caracter(),
+          caracter(caracter: caracterImg),
           buttonHelp(),
         ],
       ),
@@ -149,7 +223,7 @@ class _GameBoardState extends State<GameBoard> {
   // widget right menu
   Widget rightMenu() {
     return Container(
-      padding: const EdgeInsets.only(left: 10),
+      padding: const EdgeInsets.only(right: 20),
       width: 120,
       child: point(),
     );
@@ -160,20 +234,57 @@ class _GameBoardState extends State<GameBoard> {
     return Expanded(
       flex: 1,
       child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          padding: const EdgeInsets.all(50),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  level(level: 1, isActive: true),
-                  lineGreen(),
-                  level(level: 2, isActive: false),
-                ],
-              )
-            ],
-          )),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        padding: const EdgeInsets.symmetric(horizontal: 100),
+        child: ListView(
+          children: [
+            const SizedBox(height: 50),
+            level(
+              title: 'Materi',
+              isActive: levelActive == 0,
+              onPressed: () {
+                dialog();
+              },
+            ),
+            level(
+              title: 'Soal 1',
+              isActive: levelActive == 1,
+              onPressed: () {
+                dialog();
+              },
+            ),
+            level(
+              title: 'Soal 2',
+              isActive: levelActive == 2,
+              onPressed: () {
+                dialog();
+              },
+            ),
+            level(
+              title: 'Soal 3',
+              isActive: levelActive == 3,
+              onPressed: () {
+                dialog();
+              },
+            ),
+            level(
+              title: 'Soal 4',
+              isActive: levelActive == 4,
+              onPressed: () {
+                dialog();
+              },
+            ),
+            level(
+              title: 'Soal 5',
+              isActive: levelActive == 5,
+              onPressed: () {
+                dialog();
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -189,13 +300,17 @@ class _GameBoardState extends State<GameBoard> {
             fit: BoxFit.fill,
           ),
         ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            leftMenu(),
-            mainMenu(),
-            rightMenu(),
-          ],
+        child: BlocBuilder<CpmkActiveBloc, CpmkActiveState>(
+          builder: (context, state) {
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                leftMenu(caracterImg: state.caracter),
+                mainMenu(),
+                rightMenu(),
+              ],
+            );
+          },
         ),
       ),
     );

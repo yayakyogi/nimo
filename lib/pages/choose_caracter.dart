@@ -1,5 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nimo/bloc/cpmk_active/cpmk_active_bloc.dart';
+import 'package:nimo/pages/cpmk_1/cpmk1_board.dart';
+import 'package:nimo/pages/game_board.dart';
 import 'package:nimo/themes.dart';
+import 'package:nimo/utils/page_transition.dart';
 import 'package:nimo/widgets/background_transparent.dart';
 import 'package:nimo/widgets/button_back.dart';
 import 'package:nimo/widgets/button_submit.dart';
@@ -16,6 +23,20 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
   int index = 0;
   @override
   Widget build(BuildContext context) {
+    // Function untuk menghandle choose caracter
+    void setCaracter({int level = 0, String caracter = ''}) {
+      context.read<CpmkActiveBloc>().add(CpmkActive(
+            cpkmActive: level,
+            caracter: caracter,
+          ));
+      Navigator.push(
+        context,
+        PageTransition(
+          widget: const GameBoard(),
+        ),
+      );
+    }
+
     // background transaparent
     Widget backgroundTransparent() {
       return const BackgroundTransparent();
@@ -67,34 +88,68 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
         builder: (context, setState) => Container(
           padding: const EdgeInsets.symmetric(horizontal: 60),
           margin: const EdgeInsets.only(bottom: 40),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ItemCaracter(
-                image: 'caracter_1.png',
-                title: 'Caracter 1',
-                isActive: index == 1,
-                onPressed: () => setState(() => index = 1),
-              ),
-              ItemCaracter(
-                image: 'caracter_2.png',
-                title: 'Caracter 2',
-                isActive: index == 2,
-                onPressed: () => setState(() => index = 2),
-              ),
-              ItemCaracter(
-                image: 'caracter_3.png',
-                title: 'Caracter 3',
-                isActive: index == 3,
-                onPressed: () => setState(() => index = 3),
-              ),
-              ItemCaracter(
-                image: 'caracter_4.png',
-                title: 'Caracter 4',
-                isActive: index == 4,
-                onPressed: () => setState(() => index = 4),
-              ),
-            ],
+          child: BlocBuilder<CpmkActiveBloc, CpmkActiveState>(
+            builder: (context, state) {
+              log(state.activeCPMK.toString());
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ItemCaracter(
+                    image: 'caracter_1.png',
+                    title: 'CPMK 1',
+                    isActive: state.activeCPMK == 1,
+                    isCompleted: state.activeCPMK == 1,
+                    onPressed: () {
+                      context.read<CpmkActiveBloc>().add(CpmkActive(
+                            cpkmActive: 1,
+                            caracter: 'caracter_1.png',
+                          ));
+                      Navigator.push(
+                        context,
+                        PageTransition(widget: const CPMK1Board()),
+                      );
+                    },
+                  ),
+                  ItemCaracter(
+                    image: 'caracter_2.png',
+                    title: 'CPMK 2',
+                    isActive: state.activeCPMK == 2,
+                    isCompleted: state.activeCPMK >= 2,
+                    onPressed: () {
+                      setCaracter(level: 2, caracter: 'caracter_2.png');
+                    },
+                  ),
+                  ItemCaracter(
+                    image: 'caracter_3.png',
+                    title: 'CPMK 3',
+                    isActive: state.activeCPMK == 3,
+                    isCompleted: state.activeCPMK >= 3,
+                    onPressed: () {
+                      setCaracter(level: 3, caracter: 'caracter_3.png');
+                    },
+                  ),
+                  ItemCaracter(
+                    image: 'caracter_4.png',
+                    title: 'CPMK 4',
+                    isActive: state.activeCPMK == 4,
+                    isCompleted: state.activeCPMK >= 4,
+                    onPressed: () {
+                      setCaracter(level: 4, caracter: 'caracter_4.png');
+                    },
+                  ),
+                  ItemCaracter(
+                    image: 'caracter_1.png',
+                    title: 'CPMK 5',
+                    isActive: state.activeCPMK == 5,
+                    isCompleted: state.activeCPMK >= 5,
+                    onPressed: () {
+                      setCaracter(level: 5, caracter: 'caracter_5.png');
+                    },
+                  ),
+                ],
+              );
+            },
           ),
         ),
       );
@@ -102,7 +157,16 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
 
     // widget button selanjutnya
     Widget buttonNext() {
-      return ButtonSubmit(onPressed: () {}, title: 'Selanjutnya');
+      return ButtonSubmit(
+          onPressed: () {
+            Navigator.push(
+              context,
+              PageTransition(
+                widget: const GameBoard(),
+              ),
+            );
+          },
+          title: 'Selanjutnya');
     }
 
     return Scaffold(
@@ -122,7 +186,6 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
               children: [
                 header(),
                 chooseCaracter(),
-                buttonNext(),
               ],
             ),
           ],
