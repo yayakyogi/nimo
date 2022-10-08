@@ -32,13 +32,20 @@ class _CPMK1MateriState extends State<CPMK1Materi> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 15),
-            Text(
-              'Moral adalah  (ajaran tentang) baik buruk yang diterima umum mengenai perbuatan, sikap, kewajiban, dan sebagainya .[1] Moral merupakan standar perilaku yang memungkinkan setiap orang untuk dapat hidup secara kooperatif dalam suatu kelompok. Moral dapat mengacu pada sanksi-sanksi masyarakat terkait perilaku yang benar dan dapat diterima.',
-              style: fontPlay.copyWith(
-                fontSize: 16,
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
                 color: whiteColor,
               ),
-              textAlign: TextAlign.justify,
+              child: Text(
+                'Moral adalah  (ajaran tentang) baik buruk yang diterima umum mengenai perbuatan, sikap, kewajiban, dan sebagainya .[1] Moral merupakan standar perilaku yang memungkinkan setiap orang untuk dapat hidup secara kooperatif dalam suatu kelompok. Moral dapat mengacu pada sanksi-sanksi masyarakat terkait perilaku yang benar dan dapat diterima.',
+                style: fontPlay.copyWith(
+                  fontSize: 16,
+                  color: primaryColor,
+                ),
+                textAlign: TextAlign.justify,
+              ),
             ),
           ],
         ),

@@ -1,10 +1,13 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:nimo/pages/register.dart';
 import 'package:nimo/pages/rule.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/utils/page_transition.dart';
 import 'package:nimo/widgets/background_transparent.dart';
 import 'package:nimo/widgets/button_submit.dart';
+import 'package:nimo/widgets/form_input.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -14,47 +17,16 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController username = TextEditingController();
-  TextEditingController password = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    // SystemChrome.setPreferredOrientations([
-    //   DeviceOrientation.portraitUp,
-    // ]);
   }
 
   @override
   Widget build(BuildContext context) {
-    // Input decoration
-    InputDecoration inputDecoration(hint) {
-      return InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        filled: true,
-        fillColor: whiteColor,
-        hintText: hint,
-        hintStyle: TextStyle(
-          fontSize: 14,
-          color: primaryColor,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 1,
-            color: secondaryColor,
-          ),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 2,
-            color: secondaryColor,
-          ),
-          borderRadius: BorderRadius.circular(8),
-        ),
-      );
-    }
-
     // Container login
     Widget containerLogin() {
       return Container(
@@ -66,7 +38,7 @@ class _LoginState extends State<Login> {
           child: ListView(
             children: [
               Container(
-                margin: const EdgeInsets.only(left: 10, top: 10),
+                margin: const EdgeInsets.only(left: 10, top: 20),
                 child: Text(
                   'Login',
                   style: fontPermanentMarker.copyWith(
@@ -77,31 +49,17 @@ class _LoginState extends State<Login> {
                 ),
               ),
               const SizedBox(height: 20),
-              Text(
-                'Username',
-                style: TextStyle(
-                  fontWeight: medium,
-                  color: whiteColor,
-                ),
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: username,
-                decoration: inputDecoration('Masukkan username anda'),
+              FormInput(
+                label: 'Username',
+                hint: 'Masukkan username anda',
+                controller: usernameController,
               ),
               const SizedBox(height: 20),
-              Text(
-                'Password',
-                style: TextStyle(
-                  fontWeight: medium,
-                  color: whiteColor,
-                ),
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: password,
-                obscureText: true,
-                decoration: inputDecoration('Masukkan password anda'),
+              FormInput(
+                label: 'Password',
+                hint: 'Masukkan password anda',
+                controller: passwordController,
+                isFormPassword: true,
               ),
               const SizedBox(height: 30),
               ButtonSubmit(
@@ -114,7 +72,12 @@ class _LoginState extends State<Login> {
                 title: 'LOGIN',
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(widget: const Register()),
+                  );
+                },
                 child: Text(
                   'Register',
                   style: TextStyle(

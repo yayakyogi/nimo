@@ -37,6 +37,8 @@ dependencies:
   audioplayers: ^0.20.1
   flutter_bloc: ^8.0.1
   shared_preferences: ^2.0.13
+  lottie: ^1.0.1
+
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +67,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/musics/
+    - assets/lottie/
 
   fonts:
     - family: Permanent Marker

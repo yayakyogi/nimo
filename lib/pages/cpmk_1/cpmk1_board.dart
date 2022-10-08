@@ -9,6 +9,7 @@ import 'package:nimo/pages/cpmk_1/cpmk1_soal3.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_soal4.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_soal5.dart';
 import 'package:nimo/themes.dart';
+import 'package:nimo/widgets/lottie_animation.dart';
 
 class CPMK1Board extends StatefulWidget {
   const CPMK1Board({Key? key}) : super(key: key);
@@ -98,8 +99,9 @@ class _CPMK1BoardState extends State<CPMK1Board> {
     return BlocBuilder<Cpmk1Bloc, Cpmk1State>(
       builder: (context, state) {
         return Container(
+          width: 200,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          margin: const EdgeInsets.only(top: 30, right: 15),
+          margin: const EdgeInsets.only(top: 40, right: 15),
           decoration: BoxDecoration(
             color: primaryColor,
             borderRadius: BorderRadius.circular(20),
@@ -124,43 +126,66 @@ class _CPMK1BoardState extends State<CPMK1Board> {
   Widget level({
     required String title,
     required bool isActive,
+    required bool isDone,
     required Function() onPressed,
   }) {
     return GestureDetector(
       onTap: !isActive ? null : onPressed,
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
-        ),
-        margin: const EdgeInsets.only(bottom: 15),
+        width: 100,
         decoration: BoxDecoration(
-          color: isActive ? primaryColor : secondaryColor,
+          color: isDone
+              ? secondaryColor
+              : isActive
+                  ? primaryColor
+                  : secondaryColor.withOpacity(0.7),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: whiteColor),
+          border: Border.all(
+            color: isDone || !isActive ? primaryColor : secondaryColor,
+          ),
         ),
         child: Center(
-          child: Text(
-            title,
-            style: fontPermanentMarker.copyWith(
-              fontSize: 16,
-              color: whiteColor,
-            ),
-          ),
+          child: isDone
+              ? const LottieAnimation(lottieFile: 'done')
+              : isActive
+                  ? const LottieAnimation(lottieFile: 'active')
+                  : const LottieAnimation(lottieFile: 'pending'),
         ),
       ),
     );
   }
 
   // widget line
-  Widget lineGreen() {
-    return Image.asset('assets/icons/ic_line.png', height: 12);
+  Widget lineGreen({required bool isDone, required bool isActive}) {
+    String icon;
+
+    if (isDone) {
+      icon = 'done';
+    } else if (isActive) {
+      icon = 'active';
+    } else {
+      icon = 'pending';
+    }
+
+    return Image.asset('assets/icons/ic_line_$icon.png', height: 12);
+  }
+
+  // Line Vertical
+  Widget lineVertical({required bool isDone, required bool isActive}) {
+    return RotatedBox(
+      quarterTurns: 1,
+      child: lineGreen(
+        isActive: isActive,
+        isDone: isDone,
+      ),
+    );
   }
 
   // * MENU
   // menu kiri
   Widget leftMenu({String caracterImg = ''}) {
     return Container(
+      margin: const EdgeInsets.only(right: 70),
       padding: const EdgeInsets.only(top: 20, right: 10),
       width: 120,
       child: Column(
@@ -174,24 +199,15 @@ class _CPMK1BoardState extends State<CPMK1Board> {
     );
   }
 
-  // widget right menu
-  Widget rightMenu() {
-    return Container(
-      padding: const EdgeInsets.only(right: 20),
-      width: 100,
-    );
-  }
-
   // widget main menu
   Widget mainMenu() {
     return BlocBuilder<Cpmk1Bloc, Cpmk1State>(
       builder: (context, state) {
         return Expanded(
           flex: 1,
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            padding: const EdgeInsets.symmetric(horizontal: 100),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -207,44 +223,85 @@ class _CPMK1BoardState extends State<CPMK1Board> {
                   textAlign: TextAlign.left,
                 ),
                 const SizedBox(height: 30),
+                // Materi
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    level(
-                      title: 'Materi',
-                      isActive: state.indexTes == 0,
-                      onPressed: () => dialog(const CPMK1Materi()),
+                    Row(
+                      children: [
+                        level(
+                          title: 'Materi',
+                          isActive: state.indexTes == 0,
+                          isDone: state.indexTes > 0,
+                          onPressed: () => dialog(const CPMK1Materi()),
+                        ),
+                        lineGreen(
+                          isActive: state.indexTes == 1,
+                          isDone: state.indexTes > 1,
+                        ),
+                      ],
                     ),
-                    level(
-                      title: 'Soal 1',
-                      isActive: state.indexTes == 1,
-                      onPressed: () => dialog(const CPMK1Soal1()),
+                    // Soal 1
+                    Row(
+                      children: [
+                        level(
+                          title: 'Soal 1',
+                          isActive: state.indexTes == 1,
+                          isDone: state.indexTes > 1,
+                          onPressed: () => dialog(const CPMK1Soal1()),
+                        ),
+                        lineGreen(
+                          isActive: state.indexTes == 2,
+                          isDone: state.indexTes > 2,
+                        ),
+                      ],
                     ),
-                    level(
-                      title: 'Soal 2',
-                      isActive: state.indexTes == 2,
-                      onPressed: () => dialog(const CPMK1Soal2()),
+                    // Soal 2
+                    Column(
+                      children: [
+                        level(
+                          title: 'Soal 2',
+                          isActive: state.indexTes == 2,
+                          isDone: state.indexTes > 2,
+                          onPressed: () => dialog(const CPMK1Soal2()),
+                        ),
+                        lineVertical(
+                          isActive: state.indexTes == 3,
+                          isDone: state.indexTes > 3,
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     level(
-                      title: 'Soal 3',
-                      isActive: state.indexTes == 3,
-                      onPressed: () => dialog(const CPMK1Soal3()),
+                      title: 'Soal 5',
+                      isActive: state.indexTes == 5,
+                      isDone: state.indexTes > 5,
+                      onPressed: () => dialog(const CPMK1Soal5()),
+                    ),
+                    lineGreen(
+                      isActive: state.indexTes == 5,
+                      isDone: state.indexTes > 5,
                     ),
                     level(
                       title: 'Soal 4',
                       isActive: state.indexTes == 4,
+                      isDone: state.indexTes > 4,
                       onPressed: () => dialog(const CPMK1Soal4()),
                     ),
+                    lineGreen(
+                      isActive: state.indexTes == 4,
+                      isDone: state.indexTes > 4,
+                    ),
                     level(
-                      title: 'Soal 5',
-                      isActive: state.indexTes == 5,
-                      onPressed: () => dialog(const CPMK1Soal5()),
+                      title: 'Soal 3',
+                      isActive: state.indexTes == 3,
+                      isDone: state.indexTes > 3,
+                      onPressed: () => dialog(const CPMK1Soal3()),
                     ),
                   ],
                 ),
@@ -276,7 +333,6 @@ class _CPMK1BoardState extends State<CPMK1Board> {
               children: [
                 leftMenu(caracterImg: state.caracter),
                 mainMenu(),
-                // rightMenu(),
               ],
             );
           },

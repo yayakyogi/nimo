@@ -4,7 +4,6 @@ import 'package:nimo/pages/choose_caracter.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/utils/page_transition.dart';
 import 'package:nimo/widgets/background_transparent.dart';
-import 'package:nimo/widgets/button_back.dart';
 import 'package:nimo/widgets/button_submit.dart';
 
 class Rule extends StatefulWidget {
@@ -112,10 +111,7 @@ class _RuleState extends State<Rule> {
           ),
           const SizedBox(width: 20),
           ButtonSubmit(
-            onPressed: () => Navigator.push(
-              context,
-              PageTransition(widget: const ChooseCaracter()),
-            ),
+            onPressed: () {},
             title: 'Ketentuan',
           ),
         ],

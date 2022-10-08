@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:nimo/pages/login.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/utils/page_transition.dart';
@@ -36,22 +35,10 @@ class _HomeState extends State<Home> {
     //   // putar music
     //   await audioPlayer.playBytes(audioBytes);
     // });
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.landscapeLeft,
+    // ]);
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.manual,
-      overlays: SystemUiOverlay.values,
-    ); // to re-show bars
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-    ]);
-    super.dispose();
   }
 
   @override
@@ -70,8 +57,8 @@ class _HomeState extends State<Home> {
         ),
         child: Text(
           'Nilai & Moral',
-          style: fontPermanentMarker.copyWith(
-            fontSize: 20,
+          style: fontPoppins.copyWith(
+            fontSize: 18,
             color: whiteColor,
             fontWeight: medium,
           ),
@@ -166,6 +153,12 @@ class _HomeState extends State<Home> {
           ),
         ),
         child: body(),
+        // child: Lottie.asset(
+        //   'assets/lottie/lottie-successful.json',
+        //   repeat: true,
+        //   reverse: true,
+        //   animate: true,
+        // ),
       ),
     );
   }

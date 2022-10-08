@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/utils/page_transition.dart';
-import 'package:nimo/widgets/button_back.dart';
 import 'package:nimo/widgets/button_submit.dart';
 
 class ChooseMenu extends StatelessWidget {

@@ -15,7 +15,6 @@ class _SettingState extends State<Setting> {
 
   @override
   Widget build(BuildContext context) {
-    double heightContent = MediaQuery.of(context).size.height;
     double widthContent = MediaQuery.of(context).size.width;
 
     Widget rowMenuText({required String label, required String value}) {

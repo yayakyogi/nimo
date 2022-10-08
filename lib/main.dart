@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nimo/bloc/cpmk_1/cpmk_1_bloc.dart';
 import 'package:nimo/bloc/cpmk_active/cpmk_active_bloc.dart';
-import 'package:nimo/pages/home.dart';
+import 'package:nimo/pages/splashscreen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: "NIMO",
         theme: ThemeData(),
-        home: const Home(),
+        home: const Splashscreen(),
       ),
     );
   }

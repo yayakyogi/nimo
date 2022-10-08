@@ -9,7 +9,6 @@ import 'package:nimo/themes.dart';
 import 'package:nimo/utils/page_transition.dart';
 import 'package:nimo/widgets/background_transparent.dart';
 import 'package:nimo/widgets/button_back.dart';
-import 'package:nimo/widgets/button_submit.dart';
 import 'package:nimo/widgets/item_caracter.dart';
 
 class ChooseCaracter extends StatefulWidget {
@@ -153,20 +152,6 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
           ),
         ),
       );
-    }
-
-    // widget button selanjutnya
-    Widget buttonNext() {
-      return ButtonSubmit(
-          onPressed: () {
-            Navigator.push(
-              context,
-              PageTransition(
-                widget: const GameBoard(),
-              ),
-            );
-          },
-          title: 'Selanjutnya');
     }
 
     return Scaffold(

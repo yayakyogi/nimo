@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nimo/bloc/cpmk_active/cpmk_active_bloc.dart';
@@ -21,7 +19,6 @@ class _GameBoardState extends State<GameBoard> {
   int levelActive = 0;
 
   Future dialog() {
-    log('test ' + test.toString());
     return showDialog(
       context: context,
       builder: (context) {
