@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => Cpmk1Bloc()),
       ],
       child: MaterialApp(
-        title: "NIMO",
+        title: "Nimo",
         theme: ThemeData(),
         home: const Splashscreen(),
       ),
