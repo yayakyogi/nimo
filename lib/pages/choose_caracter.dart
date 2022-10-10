@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nimo/bloc/cpmk_active/cpmk_active_bloc.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_board.dart';
 import 'package:nimo/pages/game_board.dart';
+import 'package:nimo/pages/rule.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/utils/page_transition.dart';
 import 'package:nimo/widgets/background_transparent.dart';
@@ -51,7 +52,7 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
             Container(
               width: 100,
               margin: const EdgeInsets.only(left: 30),
-              child: const ButtonBack(),
+              child: const ButtonBack(widget: Rule()),
             ),
             Column(
               children: [

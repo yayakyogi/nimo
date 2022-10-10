@@ -12,6 +12,56 @@ class CPMK1Materi extends StatefulWidget {
 }
 
 class _CPMK1MateriState extends State<CPMK1Materi> {
+  Future watchVideo() {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return Scaffold(
+          backgroundColor: Colors.black26,
+          body: Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width - 100,
+              margin: const EdgeInsets.symmetric(vertical: 23),
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: primaryColor,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Video Penjelasan CPMK 1 - Pengeritan Moral',
+                    style: fontPoppins.copyWith(
+                      fontSize: 18,
+                      color: whiteColor,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    width: MediaQuery.of(context).size.width - 250,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: whiteColor,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  ButtonSubmit(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    title: 'Tutup',
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -51,16 +101,24 @@ class _CPMK1MateriState extends State<CPMK1Materi> {
         ),
       ),
       actions: [
-        Center(
-          child: ButtonSubmit(
-            onPressed: () {
-              Navigator.pop(context);
-              context
-                  .read<Cpmk1Bloc>()
-                  .add(Cpmk1Action(scoreSoal: 0, indexTes: 1));
-            },
-            title: 'Mengerti',
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ButtonSubmit(
+              title: 'Mengerti',
+              onPressed: () {
+                Navigator.pop(context);
+                context
+                    .read<Cpmk1Bloc>()
+                    .add(Cpmk1Action(scoreSoal: 0, indexTes: 1));
+              },
+            ),
+            const SizedBox(width: 20),
+            ButtonSubmit(
+              onPressed: () => watchVideo(),
+              title: 'Lihat Video',
+            ),
+          ],
         ),
       ],
     );

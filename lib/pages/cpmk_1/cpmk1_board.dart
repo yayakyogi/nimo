@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nimo/bloc/cpmk_1/cpmk_1_bloc.dart';
 import 'package:nimo/bloc/cpmk_active/cpmk_active_bloc.dart';
+import 'package:nimo/pages/choose_caracter.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_materi.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_soal1.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_soal2.dart';
@@ -9,6 +10,7 @@ import 'package:nimo/pages/cpmk_1/cpmk1_soal3.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_soal4.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_soal5.dart';
 import 'package:nimo/themes.dart';
+import 'package:nimo/widgets/button_submit.dart';
 import 'package:nimo/widgets/lottie_animation.dart';
 
 class CPMK1Board extends StatefulWidget {
@@ -94,26 +96,98 @@ class _CPMK1BoardState extends State<CPMK1Board> {
     );
   }
 
+  // widget show result
+  Widget result({int resultPoint = 0, bool isCompleted = false}) {
+    var resultText = '';
+
+    if (resultPoint >= 0 && resultPoint <= 5) {
+      resultText = 'Sangat Kurang';
+    } else if (resultPoint > 5 && resultPoint <= 10) {
+      resultText = 'Cukup Baik';
+    } else if (resultPoint > 10 && resultPoint <= 15) {
+      resultText = 'Baik';
+    } else if (resultPoint > 15 && resultPoint <= 20) {
+      resultText = 'Baik Sekali';
+    }
+
+    return AlertDialog(
+      backgroundColor: primaryColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      content: Container(
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.symmetric(vertical: 30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            isCompleted
+                ? Text(
+                    'Score : $resultPoint',
+                    style: fontPlay.copyWith(
+                      fontSize: 24,
+                      color: whiteColor,
+                    ),
+                  )
+                : Container(),
+            const SizedBox(height: 15),
+            Text(
+              isCompleted
+                  ? resultText
+                  : 'Harap jawab semua soal terlebih dahulu!',
+              style: fontPlay.copyWith(
+                fontSize: isCompleted ? 40 : 20,
+                color: whiteColor,
+                fontWeight: semibold,
+              ),
+              textAlign: TextAlign.justify,
+            ),
+            const SizedBox(height: 30),
+            ButtonSubmit(
+              title: !isCompleted ? 'Tutup' : 'Lanjut ke CPMK 2',
+              onPressed: () {
+                !isCompleted
+                    ? Navigator.pop(context)
+                    : Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ChooseCaracter(),
+                        ),
+                      );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   // widget point
-  Widget point() {
+  Widget point({bool isCompleted = false}) {
     return BlocBuilder<Cpmk1Bloc, Cpmk1State>(
       builder: (context, state) {
-        return Container(
-          width: 200,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          margin: const EdgeInsets.only(top: 40, right: 15),
-          decoration: BoxDecoration(
-            color: primaryColor,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(width: 1, color: whiteColor),
-          ),
-          child: Center(
-            child: Text(
-              'Point : ${state.scoreSoal}',
-              style: fontPlay.copyWith(
-                fontSize: 20,
-                color: whiteColor,
-                fontWeight: FontWeight.w800,
+        return GestureDetector(
+          onTap: () => dialog(result(
+            resultPoint: state.scoreSoal,
+            isCompleted: isCompleted,
+          )),
+          child: Container(
+            width: 200,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            margin: const EdgeInsets.only(top: 40, right: 15),
+            decoration: BoxDecoration(
+              color: primaryColor,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(width: 1, color: whiteColor),
+            ),
+            child: Center(
+              child: Text(
+                'Lihat Skor',
+                style: fontPlay.copyWith(
+                  fontSize: 20,
+                  color: whiteColor,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
             ),
           ),
@@ -305,7 +379,7 @@ class _CPMK1BoardState extends State<CPMK1Board> {
                     ),
                   ],
                 ),
-                point(),
+                point(isCompleted: state.indexTes > 5),
               ],
             ),
           ),
