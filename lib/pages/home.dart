@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nimo/pages/login.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/utils/page_transition.dart';
@@ -24,20 +25,20 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    // Future.delayed(Duration.zero, () async {
-    //   // ambil data audio dari assets
-    //   ByteData bytes = await rootBundle.load(audioAsset);
-    //   // konvert ByteData ke Uin8List
-    //   audioBytes = bytes.buffer.asUint8List(
-    //     bytes.offsetInBytes,
-    //     bytes.lengthInBytes,
-    //   );
-    //   // putar music
-    //   await audioPlayer.playBytes(audioBytes);
-    // });
-    // SystemChrome.setPreferredOrientations([
-    //   DeviceOrientation.landscapeLeft,
-    // ]);
+    Future.delayed(Duration.zero, () async {
+      // ambil data audio dari assets
+      ByteData bytes = await rootBundle.load(audioAsset);
+      // konvert ByteData ke Uin8List
+      audioBytes = bytes.buffer.asUint8List(
+        bytes.offsetInBytes,
+        bytes.lengthInBytes,
+      );
+      // putar music
+      await audioPlayer.playBytes(audioBytes);
+    });
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+    ]);
     super.initState();
   }
 
