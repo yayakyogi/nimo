@@ -55,7 +55,7 @@ class _CPMK1BoardState extends State<CPMK1Board> {
           child: Image.asset('assets/images/$caracter'),
         ),
         Text(
-          'CPMK 1',
+          'Pengertian Moral',
           style: fontPlay.copyWith(
             color: whiteColor,
             fontWeight: FontWeight.w600,
@@ -122,6 +122,10 @@ class _CPMK1BoardState extends State<CPMK1Board> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             isCompleted
+                ? Image.asset('assets/images/achivement.gif', width: 60)
+                : Container(),
+            const SizedBox(height: 15),
+            isCompleted
                 ? Text(
                     'Score : $resultPoint',
                     style: fontPlay.copyWith(
@@ -130,19 +134,19 @@ class _CPMK1BoardState extends State<CPMK1Board> {
                     ),
                   )
                 : Container(),
-            const SizedBox(height: 15),
+            const SizedBox(height: 10),
             Text(
               isCompleted
                   ? resultText
                   : 'Harap jawab semua soal terlebih dahulu!',
               style: fontPlay.copyWith(
-                fontSize: isCompleted ? 40 : 20,
+                fontSize: isCompleted ? 24 : 20,
                 color: whiteColor,
                 fontWeight: semibold,
               ),
               textAlign: TextAlign.justify,
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 15),
             ButtonSubmit(
               title: !isCompleted ? 'Tutup' : 'Lanjut ke CPMK 2',
               onPressed: () {
@@ -222,7 +226,10 @@ class _CPMK1BoardState extends State<CPMK1Board> {
           child: isDone
               ? const LottieAnimation(lottieFile: 'done')
               : isActive
-                  ? const LottieAnimation(lottieFile: 'active')
+                  ? Image.asset(
+                      'assets/images/materi.gif',
+                      width: 45,
+                    ) //const LottieAnimation(lottieFile: 'active')
                   : const LottieAnimation(lottieFile: 'pending'),
         ),
       ),

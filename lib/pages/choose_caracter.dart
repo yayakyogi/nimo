@@ -96,14 +96,14 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ItemCaracter(
-                    image: 'caracter_1.png',
-                    title: 'CPMK 1',
+                    image: 'caracter_1.gif',
+                    title: 'Pengertian Moral',
                     isActive: state.activeCPMK == 1,
                     isCompleted: state.activeCPMK == 1,
                     onPressed: () {
                       context.read<CpmkActiveBloc>().add(CpmkActive(
                             cpkmActive: 1,
-                            caracter: 'caracter_1.png',
+                            caracter: 'caracter_1.gif',
                           ));
                       Navigator.push(
                         context,
@@ -112,39 +112,39 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                     },
                   ),
                   ItemCaracter(
-                    image: 'caracter_2.png',
-                    title: 'CPMK 2',
+                    image: 'caracter_2.gif',
+                    title: 'Keterkaitan Nilai, Moral & Karakter',
                     isActive: state.activeCPMK == 2,
                     isCompleted: state.activeCPMK >= 2,
                     onPressed: () {
-                      setCaracter(level: 2, caracter: 'caracter_2.png');
+                      setCaracter(level: 2, caracter: 'caracter_2.gif');
                     },
                   ),
                   ItemCaracter(
-                    image: 'caracter_3.png',
-                    title: 'CPMK 3',
+                    image: 'caracter_3.gif',
+                    title: 'Kawasan Moral',
                     isActive: state.activeCPMK == 3,
                     isCompleted: state.activeCPMK >= 3,
                     onPressed: () {
-                      setCaracter(level: 3, caracter: 'caracter_3.png');
+                      setCaracter(level: 3, caracter: 'caracter_3.gif');
                     },
                   ),
                   ItemCaracter(
-                    image: 'caracter_4.png',
-                    title: 'CPMK 4',
+                    image: 'caracter_4.gif',
+                    title: 'Filsafat Nilai & Moral',
                     isActive: state.activeCPMK == 4,
                     isCompleted: state.activeCPMK >= 4,
                     onPressed: () {
-                      setCaracter(level: 4, caracter: 'caracter_4.png');
+                      setCaracter(level: 4, caracter: 'caracter_4.gif');
                     },
                   ),
                   ItemCaracter(
-                    image: 'caracter_1.png',
-                    title: 'CPMK 5',
+                    image: 'caracter_1.gif',
+                    title: 'Pendidikan Nilai di Sekolah',
                     isActive: state.activeCPMK == 5,
                     isCompleted: state.activeCPMK >= 5,
                     onPressed: () {
-                      setCaracter(level: 5, caracter: 'caracter_5.png');
+                      setCaracter(level: 5, caracter: 'caracter_5.gif');
                     },
                   ),
                 ],

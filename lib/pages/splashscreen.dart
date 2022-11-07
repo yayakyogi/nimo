@@ -26,27 +26,16 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        color: primaryColor,
+      backgroundColor: whiteColor,
+      body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'NiMo',
-              style: fontPermanentMarker.copyWith(
-                fontSize: 64,
-                color: whiteColor,
-              ),
-            ),
-            Text(
-              'Nilai & Moral',
-              style: fontPermanentMarker.copyWith(
-                fontSize: 30,
-                color: whiteColor,
-              ),
-            ),
+            Image.asset(
+              'assets/icons/nimo-2.png',
+              width: 150,
+            )
           ],
         ),
       ),
