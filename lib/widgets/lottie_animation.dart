@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class LottieAnimation extends StatelessWidget {
-  const LottieAnimation({Key? key, required this.lottieFile}) : super(key: key);
+  const LottieAnimation({
+    Key? key,
+    required this.lottieFile,
+    this.width = 40,
+  }) : super(key: key);
+
   final String lottieFile;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +18,7 @@ class LottieAnimation extends StatelessWidget {
       repeat: true,
       reverse: true,
       animate: true,
-      width: 40,
-      // height: 40,
+      width: width,
     );
   }
 }

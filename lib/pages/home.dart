@@ -59,7 +59,7 @@ class _HomeState extends State<Home> {
         child: Text(
           'Nilai & Moral',
           style: fontPoppins.copyWith(
-            fontSize: 18,
+            fontSize: 25,
             color: whiteColor,
             fontWeight: medium,
           ),
@@ -131,7 +131,6 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               subTitle(),
-              const SizedBox(height: 10),
               const NimoTitle(),
               button(),
               logo(),
@@ -154,12 +153,6 @@ class _HomeState extends State<Home> {
           ),
         ),
         child: body(),
-        // child: Lottie.asset(
-        //   'assets/lottie/lottie-successful.json',
-        //   repeat: true,
-        //   reverse: true,
-        //   animate: true,
-        // ),
       ),
     );
   }

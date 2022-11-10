@@ -27,15 +27,10 @@ class ItemCaracter extends StatelessWidget {
             width: 90,
             height: 90,
             margin: const EdgeInsets.only(bottom: 5),
-            decoration: BoxDecoration(
-              color: isActive ? primaryColor : blackColor.withOpacity(0.8),
-              borderRadius: BorderRadius.circular(45),
-              border: Border.all(color: whiteColor),
-            ),
             child: Center(
               child: Image.asset(
                 'assets/images/$image',
-                width: 40,
+                width: 80,
               ),
             ),
           ),
@@ -45,10 +40,9 @@ class ItemCaracter extends StatelessWidget {
           width: 100,
           child: Text(
             title,
-            style: fontPlay.copyWith(
-              fontSize: 16,
+            style: fontPermanentMarker.copyWith(
+              fontSize: 14,
               color: whiteColor,
-              fontWeight: FontWeight.w800,
             ),
             textAlign: TextAlign.center,
           ),

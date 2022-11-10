@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nimo/bloc/cpmk_1/cpmk_1_bloc.dart';
 import 'package:nimo/bloc/cpmk_active/cpmk_active_bloc.dart';
+import 'package:nimo/bloc/set_answer/set_answer_bloc.dart';
 import 'package:nimo/pages/splashscreen.dart';
 
 void main() {
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => CpmkActiveBloc()),
         BlocProvider(create: (context) => Cpmk1Bloc()),
+        BlocProvider(create: (context) => SetAnswerBloc()),
       ],
       child: MaterialApp(
         title: "Nimo",

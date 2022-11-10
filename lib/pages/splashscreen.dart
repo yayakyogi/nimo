@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:nimo/pages/home.dart';
 import 'package:nimo/themes.dart';
 
@@ -35,7 +36,12 @@ class _SplashscreenState extends State<Splashscreen> {
             Image.asset(
               'assets/icons/nimo-2.png',
               width: 150,
-            )
+            ),
+            const SizedBox(height: 30),
+            CircularProgressIndicator(
+              backgroundColor: whiteColor,
+              color: Colors.brown,
+            ),
           ],
         ),
       ),

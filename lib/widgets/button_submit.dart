@@ -4,8 +4,8 @@ import 'package:nimo/themes.dart';
 class ButtonSubmit extends StatelessWidget {
   const ButtonSubmit({
     Key? key,
-    required this.onPressed,
     required this.title,
+    required this.onPressed,
   }) : super(key: key);
 
   final Function() onPressed;
@@ -17,10 +17,7 @@ class ButtonSubmit extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         primary: primaryColor,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 40,
-          vertical: 8,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: BorderSide(color: whiteColor),
@@ -28,10 +25,7 @@ class ButtonSubmit extends StatelessWidget {
       ),
       child: Text(
         title,
-        style: fontPermanentMarker.copyWith(
-          fontSize: 18,
-          color: whiteColor,
-        ),
+        style: fontPermanentMarker.copyWith(color: whiteColor),
       ),
     );
   }

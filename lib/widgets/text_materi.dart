@@ -10,14 +10,20 @@ class TextMateri extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
-      child: Text(
-        text,
-        style: fontPlay.copyWith(
-          fontSize: 16,
-          color: primaryColor,
-          fontWeight: FontWeight.w200,
+      padding: const EdgeInsets.symmetric(horizontal: 40),
+      child: SingleChildScrollView(
+        child: ListBody(
+          children: [
+            Text(
+              text,
+              style: fontPermanentMarker.copyWith(
+                fontSize: 16,
+                color: primaryColor,
+              ),
+              textAlign: TextAlign.justify,
+            ),
+          ],
         ),
-        textAlign: TextAlign.justify,
       ),
     );
   }

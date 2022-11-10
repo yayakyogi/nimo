@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nimo/bloc/cpmk_active/cpmk_active_bloc.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_board.dart';
-import 'package:nimo/pages/game_board.dart';
 import 'package:nimo/pages/rule.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/utils/page_transition.dart';
@@ -23,20 +22,6 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
   int index = 0;
   @override
   Widget build(BuildContext context) {
-    // Function untuk menghandle choose caracter
-    void setCaracter({int level = 0, String caracter = ''}) {
-      context.read<CpmkActiveBloc>().add(CpmkActive(
-            cpkmActive: level,
-            caracter: caracter,
-          ));
-      Navigator.push(
-        context,
-        PageTransition(
-          widget: const GameBoard(),
-        ),
-      );
-    }
-
     // background transaparent
     Widget backgroundTransparent() {
       return const BackgroundTransparent();
@@ -116,36 +101,28 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                     title: 'Keterkaitan Nilai, Moral & Karakter',
                     isActive: state.activeCPMK == 2,
                     isCompleted: state.activeCPMK >= 2,
-                    onPressed: () {
-                      setCaracter(level: 2, caracter: 'caracter_2.gif');
-                    },
+                    onPressed: () {},
                   ),
                   ItemCaracter(
                     image: 'caracter_3.gif',
                     title: 'Kawasan Moral',
                     isActive: state.activeCPMK == 3,
                     isCompleted: state.activeCPMK >= 3,
-                    onPressed: () {
-                      setCaracter(level: 3, caracter: 'caracter_3.gif');
-                    },
+                    onPressed: () {},
                   ),
                   ItemCaracter(
                     image: 'caracter_4.gif',
                     title: 'Filsafat Nilai & Moral',
                     isActive: state.activeCPMK == 4,
                     isCompleted: state.activeCPMK >= 4,
-                    onPressed: () {
-                      setCaracter(level: 4, caracter: 'caracter_4.gif');
-                    },
+                    onPressed: () {},
                   ),
                   ItemCaracter(
                     image: 'caracter_1.gif',
                     title: 'Pendidikan Nilai di Sekolah',
                     isActive: state.activeCPMK == 5,
                     isCompleted: state.activeCPMK >= 5,
-                    onPressed: () {
-                      setCaracter(level: 5, caracter: 'caracter_5.gif');
-                    },
+                    onPressed: () {},
                   ),
                 ],
               );
