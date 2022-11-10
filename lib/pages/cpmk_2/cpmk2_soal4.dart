@@ -8,26 +8,26 @@ import 'package:nimo/utils/change_index_answer.dart';
 import 'package:nimo/widgets/soal/question_body.dart';
 import 'package:nimo/widgets/soal/question_header.dart';
 
-class CPMK1Soal5 extends StatefulWidget {
-  const CPMK1Soal5({Key? key}) : super(key: key);
+class CPMK2Soal4 extends StatefulWidget {
+  const CPMK2Soal4({Key? key}) : super(key: key);
 
   @override
-  State<CPMK1Soal5> createState() => _CPMK1Soal5State();
+  State<CPMK2Soal4> createState() => _CPMK2Soal4State();
 }
 
-class _CPMK1Soal5State extends State<CPMK1Soal5> {
+class _CPMK2Soal4State extends State<CPMK2Soal4> {
   answer(abjad) {
     switch (abjad) {
       case 'A':
-        return 'A.	Saya merasakan aturan dibuat untuk ditaati.';
+        return 'A.	Saya selalu menyapa tetangga di sekitar saya.';
       case 'B':
-        return 'B.	Saya merasakan, ada beberapa aturan yang membuat saya kurang nyaman.';
+        return 'B.	Saya sesekali menyapa tetangga sekitar saya';
       case 'C':
-        return 'C.	Saya merasakan beberapa aturan sifatnya agak memaksa, seperti harus kerja bakti, padahal bangun saya kesiangan';
+        return 'C.	Saya hanya menyapa tetangga yang saya kenal';
       case 'D':
-        return 'D.	Aturan itu memaksa saya tertekan, saya tidak bisa berosialisasi dengan mereka.';
+        return 'D.	Saya tidak pernah menyapa karena saya malu';
       default:
-        return 'Apa yang kamu rasakan selama ini dengan norma dan etika di lingkungan masyarakat?';
+        return 'Apakah anda pernah menghormati atau bertegur sapa dengan tetangga anda di sekitar?';
     }
   }
 
@@ -46,7 +46,7 @@ class _CPMK1Soal5State extends State<CPMK1Soal5> {
               QuestionHeader(
                 questionNumber: 4,
                 onEnd: () => onSubmitQuestion(
-                  cpmk: 1,
+                  cpmk: 2,
                   context: context,
                   index: stateCpmk.indexTes,
                   scoreAnswer: 0,
@@ -83,7 +83,7 @@ class _CPMK1Soal5State extends State<CPMK1Soal5> {
                       score: 4,
                     ),
                     submitQuestion: () => onSubmitQuestion(
-                      cpmk: 1,
+                      cpmk: 2,
                       context: context,
                       index: stateCpmk.indexTes,
                       scoreAnswer: stateIndexAnswer.score,

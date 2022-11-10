@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nimo/bloc/cpmk_1/cpmk_1_bloc.dart';
+import 'package:nimo/bloc/cpmk/cpmk_bloc.dart';
 import 'package:nimo/bloc/cpmk_active/cpmk_active_bloc.dart';
 import 'package:nimo/bloc/set_answer/set_answer_bloc.dart';
 import 'package:nimo/pages/splashscreen.dart';
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => CpmkActiveBloc()),
-        BlocProvider(create: (context) => Cpmk1Bloc()),
+        BlocProvider(create: (context) => CpmkBloc()),
         BlocProvider(create: (context) => SetAnswerBloc()),
       ],
       child: MaterialApp(

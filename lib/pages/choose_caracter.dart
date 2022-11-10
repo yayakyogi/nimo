@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nimo/bloc/cpmk_active/cpmk_active_bloc.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_board.dart';
+import 'package:nimo/pages/cpmk_2/cpmk2_board.dart';
 import 'package:nimo/pages/rule.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/utils/page_transition.dart';
@@ -87,8 +88,9 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                     isCompleted: state.activeCPMK == 1,
                     onPressed: () {
                       context.read<CpmkActiveBloc>().add(CpmkActive(
-                            cpkmActive: 1,
+                            cpmkActive: 1,
                             caracter: 'caracter_1.gif',
+                            scoreGlobal: state.scoreGlobal,
                           ));
                       Navigator.push(
                         context,
@@ -101,14 +103,27 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                     title: 'Keterkaitan Nilai, Moral & Karakter',
                     isActive: state.activeCPMK == 2,
                     isCompleted: state.activeCPMK >= 2,
-                    onPressed: () {},
+                    onPressed: () {
+                      log('score global after CPMK 1 ${state.scoreGlobal}');
+                      context.read<CpmkActiveBloc>().add(CpmkActive(
+                            cpmkActive: 2,
+                            caracter: 'caracter_2.gif',
+                            scoreGlobal: state.scoreGlobal,
+                          ));
+                      Navigator.push(
+                        context,
+                        PageTransition(widget: const CPMK2Board()),
+                      );
+                    },
                   ),
                   ItemCaracter(
                     image: 'caracter_3.gif',
                     title: 'Kawasan Moral',
                     isActive: state.activeCPMK == 3,
                     isCompleted: state.activeCPMK >= 3,
-                    onPressed: () {},
+                    onPressed: () {
+                      log('score global after CPMK 2 ${state.scoreGlobal}');
+                    },
                   ),
                   ItemCaracter(
                     image: 'caracter_4.gif',

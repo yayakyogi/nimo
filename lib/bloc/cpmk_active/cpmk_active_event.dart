@@ -4,10 +4,13 @@ part of 'cpmk_active_bloc.dart';
 abstract class CpmkActiveEvent {}
 
 class CpmkActive extends CpmkActiveEvent {
-  final int cpkmActive;
+  final int cpmkActive;
   final String caracter;
+  final int scoreGlobal;
+
   CpmkActive({
-    required this.cpkmActive,
+    required this.cpmkActive,
     required this.caracter,
+    required this.scoreGlobal,
   });
 }

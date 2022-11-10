@@ -9,6 +9,12 @@ import 'package:nimo/pages/cpmk_1/cpmk1_soal2.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_soal3.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_soal4.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_soal5.dart';
+import 'package:nimo/pages/cpmk_2/cpmk2_materi.dart';
+import 'package:nimo/pages/cpmk_2/cpmk2_soal1.dart';
+import 'package:nimo/pages/cpmk_2/cpmk2_soal2.dart';
+import 'package:nimo/pages/cpmk_2/cpmk2_soal3.dart';
+import 'package:nimo/pages/cpmk_2/cpmk2_soal4.dart';
+import 'package:nimo/pages/cpmk_2/cpmk5_soal5.dart';
 import 'package:nimo/utils/page_transition.dart';
 import 'package:nimo/widgets/mainboard/level.dart';
 import 'package:nimo/widgets/mainboard/line_green.dart';
@@ -18,15 +24,15 @@ import 'package:nimo/widgets/mainboard/result.dart';
 import 'package:nimo/widgets/mainboard/skor_button.dart';
 import 'package:nimo/widgets/mainboard/title.dart';
 
-class CPMK1Board extends StatefulWidget {
-  const CPMK1Board({Key? key}) : super(key: key);
+class CPMK2Board extends StatefulWidget {
+  const CPMK2Board({Key? key}) : super(key: key);
 
   @override
-  State<CPMK1Board> createState() => _CPMK1BoardState();
+  State<CPMK2Board> createState() => _CPMK2BoardState();
 }
 
-class _CPMK1BoardState extends State<CPMK1Board> {
-  final String title = 'CPMK 1 : Pengertian Moral';
+class _CPMK2BoardState extends State<CPMK2Board> {
+  final String title = 'CPMK 2 : Keterkaitan Nilai, Moral dan Karakter';
 
   Future dialog(Widget widget) {
     return showDialog(
@@ -41,13 +47,14 @@ class _CPMK1BoardState extends State<CPMK1Board> {
   Widget point({bool isCompleted = false}) {
     return BlocBuilder<CpmkBloc, CpmkState>(
       builder: (context, state) {
+        log('state akhir ${state.scoreSoal}');
         return GestureDetector(
           onTap: () => dialog(
             Result(
-              titleNext: 'Lanjut ke CPMK 2',
+              titleNext: 'Lanjut ke CPMK 3',
               resultPoint: state.scoreSoal,
               isCompleted: isCompleted,
-              nextCpmk: 2,
+              nextCpmk: 3,
             ),
           ),
           child: const SkorButton(),
@@ -80,7 +87,7 @@ class _CPMK1BoardState extends State<CPMK1Board> {
                           isDone: state.indexTes > 0,
                           onPressed: () => Navigator.push(
                             context,
-                            PageTransition(widget: const CPMK1Materi()),
+                            PageTransition(widget: const CPMK2Materi()),
                           ),
                         ),
                         LineGreen(
@@ -95,7 +102,7 @@ class _CPMK1BoardState extends State<CPMK1Board> {
                         Level(
                           isActive: state.indexTes == 1,
                           isDone: state.indexTes > 1,
-                          onPressed: () => dialog(const CPMK1Soal1()),
+                          onPressed: () => dialog(const CPMK2Soal1()),
                         ),
                         LineGreen(
                           isActive: state.indexTes == 2,
@@ -109,7 +116,7 @@ class _CPMK1BoardState extends State<CPMK1Board> {
                         Level(
                           isActive: state.indexTes == 2,
                           isDone: state.indexTes > 2,
-                          onPressed: () => dialog(const CPMK1Soal2()),
+                          onPressed: () => dialog(const CPMK2Soal2()),
                         ),
                         LineVertical(
                           isActive: state.indexTes == 3,
@@ -126,7 +133,7 @@ class _CPMK1BoardState extends State<CPMK1Board> {
                     Level(
                       isActive: state.indexTes == 5,
                       isDone: state.indexTes > 5,
-                      onPressed: () => dialog(const CPMK1Soal5()),
+                      onPressed: () => dialog(const CPMK2Soal5()),
                     ),
                     LineGreen(
                       isActive: state.indexTes == 5,
@@ -136,7 +143,7 @@ class _CPMK1BoardState extends State<CPMK1Board> {
                     Level(
                       isActive: state.indexTes == 4,
                       isDone: state.indexTes > 4,
-                      onPressed: () => dialog(const CPMK1Soal4()),
+                      onPressed: () => dialog(const CPMK2Soal4()),
                     ),
                     LineGreen(
                       isActive: state.indexTes == 4,
@@ -146,7 +153,7 @@ class _CPMK1BoardState extends State<CPMK1Board> {
                     Level(
                       isActive: state.indexTes == 3,
                       isDone: state.indexTes > 3,
-                      onPressed: () => dialog(const CPMK1Soal3()),
+                      onPressed: () => dialog(const CPMK2Soal3()),
                     ),
                   ],
                 ),

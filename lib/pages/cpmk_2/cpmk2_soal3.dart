@@ -8,26 +8,26 @@ import 'package:nimo/utils/change_index_answer.dart';
 import 'package:nimo/widgets/soal/question_body.dart';
 import 'package:nimo/widgets/soal/question_header.dart';
 
-class CPMK1Soal5 extends StatefulWidget {
-  const CPMK1Soal5({Key? key}) : super(key: key);
+class CPMK2Soal3 extends StatefulWidget {
+  const CPMK2Soal3({Key? key}) : super(key: key);
 
   @override
-  State<CPMK1Soal5> createState() => _CPMK1Soal5State();
+  State<CPMK2Soal3> createState() => _CPMK2Soal3State();
 }
 
-class _CPMK1Soal5State extends State<CPMK1Soal5> {
+class _CPMK2Soal3State extends State<CPMK2Soal3> {
   answer(abjad) {
     switch (abjad) {
       case 'A':
-        return 'A.	Saya merasakan aturan dibuat untuk ditaati.';
+        return 'A.	Saya sering mengikuti, kegiatan yang melibatkan pendapat warga untuk kepentingan bersama';
       case 'B':
-        return 'B.	Saya merasakan, ada beberapa aturan yang membuat saya kurang nyaman.';
+        return 'B.	Saya mengikuti kegiatan masyarakat,dan sesekali memberikan pendapat.';
       case 'C':
-        return 'C.	Saya merasakan beberapa aturan sifatnya agak memaksa, seperti harus kerja bakti, padahal bangun saya kesiangan';
+        return 'C.	Saya kadang-kadang mengikuti,tapi tidak pernah berpendapat.';
       case 'D':
-        return 'D.	Aturan itu memaksa saya tertekan, saya tidak bisa berosialisasi dengan mereka.';
+        return 'D.	Saya tidak pernah mengikuti, karena tidak nyaman berada di lingkungan masyarakat';
       default:
-        return 'Apa yang kamu rasakan selama ini dengan norma dan etika di lingkungan masyarakat?';
+        return 'Apakah anda pernah mengikuti kegiatan musyawarah bersama lingkungan masyarakat sekitar anda?';
     }
   }
 
@@ -44,9 +44,9 @@ class _CPMK1Soal5State extends State<CPMK1Soal5> {
             ),
             actions: [
               QuestionHeader(
-                questionNumber: 4,
+                questionNumber: 3,
                 onEnd: () => onSubmitQuestion(
-                  cpmk: 1,
+                  cpmk: 2,
                   context: context,
                   index: stateCpmk.indexTes,
                   scoreAnswer: 0,
@@ -83,7 +83,7 @@ class _CPMK1Soal5State extends State<CPMK1Soal5> {
                       score: 4,
                     ),
                     submitQuestion: () => onSubmitQuestion(
-                      cpmk: 1,
+                      cpmk: 2,
                       context: context,
                       index: stateCpmk.indexTes,
                       scoreAnswer: stateIndexAnswer.score,

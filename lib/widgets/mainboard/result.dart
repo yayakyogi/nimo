@@ -1,4 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nimo/bloc/cpmk/cpmk_bloc.dart';
+import 'package:nimo/bloc/cpmk_active/cpmk_active_bloc.dart';
 import 'package:nimo/pages/choose_caracter.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/widgets/button_submit.dart';
@@ -9,11 +14,13 @@ class Result extends StatelessWidget {
     required this.isCompleted,
     required this.resultPoint,
     required this.titleNext,
+    required this.nextCpmk,
   }) : super(key: key);
 
   final int resultPoint;
   final bool isCompleted;
   final String titleNext;
+  final int nextCpmk;
 
   @override
   Widget build(BuildContext context) {
@@ -66,17 +73,44 @@ class Result extends StatelessWidget {
               textAlign: TextAlign.justify,
             ),
             const SizedBox(height: 15),
-            ButtonSubmit(
-              title: !isCompleted ? 'Tutup' : titleNext,
-              onPressed: () {
-                !isCompleted
-                    ? Navigator.pop(context)
-                    : Navigator.pushReplacement(
+            BlocBuilder<CpmkActiveBloc, CpmkActiveState>(
+              builder: (context, state) {
+                return ButtonSubmit(
+                  title: !isCompleted ? 'Tutup' : titleNext,
+                  onPressed: () {
+                    if (isCompleted) {
+                      // save global score
+                      context.read<CpmkActiveBloc>().add(CpmkActive(
+                            cpmkActive: nextCpmk,
+                            caracter: state.caracter,
+                            scoreGlobal: state.scoreGlobal + resultPoint,
+                          ));
+
+                      // reset cpmk1
+                      context
+                          .read<CpmkBloc>()
+                          .add(CpmkAction(scoreSoal: 0, indexTes: 0));
+
+                      // redirect to page choose caracter
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const ChooseCaracter(),
                         ),
                       );
+                    } else {
+                      Navigator.pop(context);
+                    }
+                    // !isCompleted
+                    //     ? Navigator.pop(context)
+                    //     : Navigator.pushReplacement(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //           builder: (context) => const ChooseCaracter(),
+                    //         ),
+                    //       );
+                  },
+                );
               },
             ),
           ],

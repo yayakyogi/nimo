@@ -11,7 +11,7 @@ class TitleBoard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20),
       child: Text(
-        'CPMK 1 : Pengertian Moral',
+        title,
         style: fontPlay.copyWith(
           fontSize: 20,
           color: primaryColor,

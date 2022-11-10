@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nimo/bloc/cpmk_1/cpmk_1_bloc.dart';
+import 'package:nimo/bloc/cpmk/cpmk_bloc.dart';
 import 'package:nimo/bloc/set_answer/set_answer_bloc.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/utils/button_submit_question.dart';
@@ -33,8 +33,8 @@ class _CPMK1Soal1State extends State<CPMK1Soal1> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<Cpmk1Bloc, Cpmk1State>(
-      builder: (context, state) {
+    return BlocBuilder<CpmkBloc, CpmkState>(
+      builder: (context, stateCpmk) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50),
           child: AlertDialog(
@@ -46,9 +46,11 @@ class _CPMK1Soal1State extends State<CPMK1Soal1> {
               QuestionHeader(
                 questionNumber: 1,
                 onEnd: () => onSubmitQuestion(
+                  cpmk: 1,
                   context: context,
-                  index: state.indexTes,
-                  score: 0,
+                  index: stateCpmk.indexTes,
+                  scoreAnswer: 0,
+                  scoreGlobal: stateCpmk.scoreSoal + 0,
                 ),
               ),
               BlocBuilder<SetAnswerBloc, SetAnswerState>(
@@ -81,9 +83,11 @@ class _CPMK1Soal1State extends State<CPMK1Soal1> {
                       score: 4,
                     ),
                     submitQuestion: () => onSubmitQuestion(
+                      cpmk: 1,
                       context: context,
-                      index: state.indexTes,
-                      score: stateIndexAnswer.score,
+                      index: stateCpmk.indexTes,
+                      scoreAnswer: stateIndexAnswer.score,
+                      scoreGlobal: stateCpmk.scoreSoal + stateIndexAnswer.score,
                     ),
                   );
                 },

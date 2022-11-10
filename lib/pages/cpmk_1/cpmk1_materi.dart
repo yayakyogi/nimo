@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nimo/bloc/cpmk_1/cpmk_1_bloc.dart';
+import 'package:nimo/bloc/cpmk/cpmk_bloc.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/widgets/button_submit.dart';
 import 'package:nimo/widgets/image_materi.dart';
@@ -19,6 +19,8 @@ class CPMK1Materi extends StatefulWidget {
 }
 
 class _CPMK1MateriState extends State<CPMK1Materi> {
+  final String title = 'CPMK 1 : Pengertian Moral';
+
   Future watchVideo() {
     return showDialog(
       context: context,
@@ -41,7 +43,7 @@ class _CPMK1MateriState extends State<CPMK1Materi> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Video Penjelasan CPMK 1 - Pengeritan Moral',
+                    'Video Penjelasan $title',
                     style: fontPoppins.copyWith(
                       fontSize: 18,
                       color: whiteColor,
@@ -75,14 +77,14 @@ class _CPMK1MateriState extends State<CPMK1Materi> {
 
   void onEnd() {
     Navigator.pop(context);
-    context.read<Cpmk1Bloc>().add(Cpmk1Action(scoreSoal: 0, indexTes: 1));
+    context.read<CpmkBloc>().add(CpmkAction(scoreSoal: 0, indexTes: 1));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryColor,
-      appBar: appBar(title: 'Pengertian Materi', onVideoOpen: () {}),
+      appBar: appBar(title: title, onVideoOpen: () => watchVideo()),
       body: MateriContent(
         totalPage: 5,
         onEnd: () => onEnd(),

@@ -67,10 +67,14 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/images/materi_cpmk1/
     - assets/icons/
     - assets/musics/
     - assets/lottie/
+    - assets/images/materi_cpmk1/
+    - assets/images/materi_cpmk2/
+    - assets/images/materi_cpmk3/
+    - assets/images/materi_cpmk4/
+    - assets/images/materi_cpmk5/
 
   fonts:
     - family: Permanent Marker

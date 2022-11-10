@@ -22,7 +22,11 @@ class ItemCaracter extends StatelessWidget {
     return Column(
       children: [
         GestureDetector(
-          onTap: isActive ? onPressed : null,
+          onTap: isActive
+              ? onPressed
+              : () {
+                  print('CPMK DONE');
+                },
           child: Container(
             width: 90,
             height: 90,

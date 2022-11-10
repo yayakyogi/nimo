@@ -9,8 +9,9 @@ class CpmkActiveBloc extends Bloc<CpmkActiveEvent, CpmkActiveState> {
   CpmkActiveBloc() : super(const CpmkActiveInitial()) {
     on<CpmkActive>((event, emit) {
       emit(CpmkActiveLoaded(
-        getActiveCpmk: event.cpkmActive,
+        getActiveCpmk: event.cpmkActive,
         getCaracter: event.caracter,
+        getScoreGlobal: event.scoreGlobal,
       ));
     });
   }

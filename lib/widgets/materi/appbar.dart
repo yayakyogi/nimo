@@ -11,7 +11,7 @@ PreferredSizeWidget appBar({
     elevation: 0,
     actions: <Widget>[
       GestureDetector(
-        onTap: () => onVideoOpen,
+        onTap: onVideoOpen,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           margin: const EdgeInsets.only(right: 30, top: 8),
