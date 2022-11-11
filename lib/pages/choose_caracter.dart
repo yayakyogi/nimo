@@ -5,8 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nimo/bloc/cpmk_active/cpmk_active_bloc.dart';
 import 'package:nimo/pages/cpmk_1/cpmk1_board.dart';
 import 'package:nimo/pages/cpmk_2/cpmk2_board.dart';
+import 'package:nimo/pages/cpmk_3/cpmk3_board.dart';
+import 'package:nimo/pages/cpmk_4/cpmk4_board.dart';
+import 'package:nimo/pages/cpmk_5/cpmk5_board.dart';
 import 'package:nimo/pages/rule.dart';
 import 'package:nimo/themes.dart';
+import 'package:nimo/utils/button_willpopup.dart';
 import 'package:nimo/utils/page_transition.dart';
 import 'package:nimo/widgets/background_transparent.dart';
 import 'package:nimo/widgets/button_back.dart';
@@ -85,7 +89,7 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                     image: 'caracter_1.gif',
                     title: 'Pengertian Moral',
                     isActive: state.activeCPMK == 1,
-                    isCompleted: state.activeCPMK == 1,
+                    isCompleted: state.activeCPMK > 1,
                     onPressed: () {
                       context.read<CpmkActiveBloc>().add(CpmkActive(
                             cpmkActive: 1,
@@ -102,7 +106,7 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                     image: 'caracter_2.gif',
                     title: 'Keterkaitan Nilai, Moral & Karakter',
                     isActive: state.activeCPMK == 2,
-                    isCompleted: state.activeCPMK >= 2,
+                    isCompleted: state.activeCPMK > 2,
                     onPressed: () {
                       log('score global after CPMK 1 ${state.scoreGlobal}');
                       context.read<CpmkActiveBloc>().add(CpmkActive(
@@ -120,24 +124,55 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                     image: 'caracter_3.gif',
                     title: 'Kawasan Moral',
                     isActive: state.activeCPMK == 3,
-                    isCompleted: state.activeCPMK >= 3,
+                    isCompleted: state.activeCPMK > 3,
                     onPressed: () {
                       log('score global after CPMK 2 ${state.scoreGlobal}');
+                      context.read<CpmkActiveBloc>().add(CpmkActive(
+                            cpmkActive: 3,
+                            caracter: 'caracter_3.gif',
+                            scoreGlobal: state.scoreGlobal,
+                          ));
+                      Navigator.push(
+                        context,
+                        PageTransition(widget: const CPMK3Board()),
+                      );
                     },
                   ),
                   ItemCaracter(
                     image: 'caracter_4.gif',
                     title: 'Filsafat Nilai & Moral',
                     isActive: state.activeCPMK == 4,
-                    isCompleted: state.activeCPMK >= 4,
-                    onPressed: () {},
+                    isCompleted: state.activeCPMK > 4,
+                    onPressed: () {
+                      log('score global after CPMK 3 ${state.scoreGlobal}');
+                      context.read<CpmkActiveBloc>().add(CpmkActive(
+                            cpmkActive: 4,
+                            caracter: 'caracter_4.gif',
+                            scoreGlobal: state.scoreGlobal,
+                          ));
+                      Navigator.push(
+                        context,
+                        PageTransition(widget: const CPMK4Board()),
+                      );
+                    },
                   ),
                   ItemCaracter(
-                    image: 'caracter_1.gif',
+                    image: 'caracter_5.gif',
                     title: 'Pendidikan Nilai di Sekolah',
                     isActive: state.activeCPMK == 5,
-                    isCompleted: state.activeCPMK >= 5,
-                    onPressed: () {},
+                    isCompleted: state.activeCPMK > 5,
+                    onPressed: () {
+                      log('score global after CPMK 4 ${state.scoreGlobal}');
+                      context.read<CpmkActiveBloc>().add(CpmkActive(
+                            cpmkActive: 5,
+                            caracter: 'caracter_5.gif',
+                            scoreGlobal: state.scoreGlobal,
+                          ));
+                      Navigator.push(
+                        context,
+                        PageTransition(widget: const CPMK5Board()),
+                      );
+                    },
                   ),
                 ],
               );
@@ -147,26 +182,29 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
       );
     }
 
-    return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: backgroundImage,
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Stack(
-          children: [
-            backgroundTransparent(),
-            Column(
-              children: [
-                header(),
-                chooseCaracter(),
-              ],
+    return WillPopScope(
+      onWillPop: () => onBackPressed(context: context),
+      child: Scaffold(
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: backgroundImage,
+              fit: BoxFit.cover,
             ),
-          ],
+          ),
+          child: Stack(
+            children: [
+              backgroundTransparent(),
+              Column(
+                children: [
+                  header(),
+                  chooseCaracter(),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

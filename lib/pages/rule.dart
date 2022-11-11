@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nimo/pages/choose_caracter.dart';
 import 'package:nimo/themes.dart';
+import 'package:nimo/utils/button_willpopup.dart';
 import 'package:nimo/utils/page_transition.dart';
 import 'package:nimo/widgets/background_transparent.dart';
 import 'package:nimo/widgets/button_submit.dart';
@@ -129,21 +130,24 @@ class _RuleState extends State<Rule> {
       );
     }
 
-    return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: backgroundImage,
-            fit: BoxFit.cover,
+    return WillPopScope(
+      onWillPop: () => onBackPressed(context: context),
+      child: Scaffold(
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: backgroundImage,
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: Stack(
-          children: [
-            bgOpacity(),
-            body(),
-          ],
+          child: Stack(
+            children: [
+              bgOpacity(),
+              body(),
+            ],
+          ),
         ),
       ),
     );

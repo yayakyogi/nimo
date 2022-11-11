@@ -56,7 +56,6 @@ class ResetButton extends StatelessWidget {
       child: Container(
         width: 95,
         height: 40,
-        margin: const EdgeInsets.only(top: 50),
         decoration: BoxDecoration(
           color: primaryColor,
           borderRadius: BorderRadius.circular(10),

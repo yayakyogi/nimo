@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nimo/pages/login.dart';
 import 'package:nimo/themes.dart';
+import 'package:nimo/utils/button_willpopup.dart';
 import 'package:nimo/utils/page_transition.dart';
 import 'package:nimo/widgets/button_submit.dart';
 import 'package:nimo/widgets/nimo_title.dart';
@@ -58,10 +59,10 @@ class _HomeState extends State<Home> {
         ),
         child: Text(
           'Nilai & Moral',
-          style: fontPoppins.copyWith(
+          style: fontPermanentMarker.copyWith(
             fontSize: 25,
             color: whiteColor,
-            fontWeight: medium,
+            fontWeight: FontWeight.w900,
           ),
         ),
       );
@@ -142,17 +143,20 @@ class _HomeState extends State<Home> {
       );
     }
 
-    return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: backgroundImage,
-            fit: BoxFit.cover,
+    return WillPopScope(
+      onWillPop: () => onBackPressed(context: context),
+      child: Scaffold(
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: backgroundImage,
+              fit: BoxFit.cover,
+            ),
           ),
+          child: body(),
         ),
-        child: body(),
       ),
     );
   }

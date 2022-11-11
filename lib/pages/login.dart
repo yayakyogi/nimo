@@ -1,9 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:nimo/pages/register.dart';
 import 'package:nimo/pages/rule.dart';
 import 'package:nimo/themes.dart';
+import 'package:nimo/utils/button_willpopup.dart';
 import 'package:nimo/utils/page_transition.dart';
 import 'package:nimo/widgets/background_transparent.dart';
 import 'package:nimo/widgets/button_submit.dart';
@@ -94,22 +93,25 @@ class _LoginState extends State<Login> {
       );
     }
 
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: backgroundImage,
-          fit: BoxFit.cover,
+    return WillPopScope(
+      onWillPop: () => onBackPressed(context: context),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: backgroundImage,
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.black12,
-        body: Stack(
-          children: [
-            const BackgroundTransparent(),
-            containerLogin(),
-          ],
+        child: Scaffold(
+          backgroundColor: Colors.black12,
+          body: Stack(
+            children: [
+              const BackgroundTransparent(),
+              containerLogin(),
+            ],
+          ),
         ),
       ),
     );

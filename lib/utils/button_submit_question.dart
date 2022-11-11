@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nimo/bloc/cpmk/cpmk_bloc.dart';
@@ -14,13 +12,17 @@ void onSubmitQuestion({
   required int cpmk,
 }) {
   Navigator.pop(context);
+  // save score and index materi & soal
   context.read<CpmkBloc>().add(CpmkAction(
         scoreSoal: scoreGlobal,
         indexTes: index + 1,
       ));
+
+  // reset set answer to default
   context.read<SetAnswerBloc>().add(SetAnswerEvent(
         indexAnswer: 0,
         score: 0,
       ));
+
   dialogResult(context: context, scoreAnswer: scoreAnswer);
 }

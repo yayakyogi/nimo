@@ -32,10 +32,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SetAnswerBloc()),
       ],
       child: MaterialApp(
-        title: "Nimo",
-        theme: ThemeData(),
-        home: const Splashscreen(),
-      ),
+          title: "Nimo", theme: ThemeData(), home: const Splashscreen()),
     );
   }
 }

@@ -22,19 +22,31 @@ class ItemCaracter extends StatelessWidget {
     return Column(
       children: [
         GestureDetector(
-          onTap: isActive
-              ? onPressed
-              : () {
-                  print('CPMK DONE');
-                },
+          onTap: isActive ? onPressed : null,
           child: Container(
-            width: 90,
+            // width: 90,
             height: 90,
             margin: const EdgeInsets.only(bottom: 5),
             child: Center(
-              child: Image.asset(
-                'assets/images/$image',
-                width: 80,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/images/$image',
+                    width: 80,
+                  ),
+                  isActive
+                      ? const Icon(
+                          Icons.online_prediction,
+                          color: Colors.greenAccent,
+                        )
+                      : isCompleted
+                          ? Icon(
+                              Icons.check_circle,
+                              color: whiteColor,
+                            )
+                          : Container(),
+                ],
               ),
             ),
           ),

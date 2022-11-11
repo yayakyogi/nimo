@@ -40,7 +40,8 @@ class QuestionBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SetAnswerBloc, SetAnswerState>(
       builder: (context, state) {
-        return Padding(
+        return Container(
+          height: MediaQuery.of(context).size.height - 110,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           child: SingleChildScrollView(
             child: ListBody(
