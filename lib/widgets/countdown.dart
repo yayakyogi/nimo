@@ -14,7 +14,7 @@ class TimeCountdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+    int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 300;
 
     return CountdownTimer(
       endTime: endTime,

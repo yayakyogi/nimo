@@ -14,47 +14,43 @@ class ResultAnswer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black26,
-      body: Center(
-        child: Container(
-          width: MediaQuery.of(context).size.width - 100,
-          margin: const EdgeInsets.symmetric(
-            vertical: 30,
-            horizontal: 150,
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        horizontal: 220,
+        vertical: 70,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: primaryColor,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: Image.asset(
+              emoticon,
+              width: 100,
+              height: 100,
+            ),
           ),
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: primaryColor,
+          const SizedBox(height: 15),
+          Text(
+            report,
+            style: fontPoppins.copyWith(
+              fontSize: 18,
+              color: whiteColor,
+            ),
+            textAlign: TextAlign.center,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                emoticon,
-                width: 100,
-                height: 100,
-              ),
-              const SizedBox(height: 10),
-              Text(
-                report,
-                style: fontPoppins.copyWith(
-                  fontSize: 20,
-                  color: whiteColor,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 30),
-              ButtonSubmit(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                title: 'Tutup',
-              ),
-            ],
+          const SizedBox(height: 15),
+          ButtonSubmit(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            title: 'Tutup',
           ),
-        ),
+        ],
       ),
     );
   }

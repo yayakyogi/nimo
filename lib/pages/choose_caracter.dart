@@ -50,14 +50,19 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                 Text(
                   'Pilih Karakter',
                   style: fontPlay.copyWith(
-                    fontSize: 20,
+                    fontSize: 24,
                     color: whiteColor,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'Silahkan pilih karakter yang anda suka \nsebelum mencoba permainan',
-                  style: fontPlay.copyWith(color: whiteColor),
+                  'Pilih karakter dan mulai permainan',
+                  style: fontPlay.copyWith(
+                    fontSize: 16,
+                    color: whiteColor,
+                    fontWeight: FontWeight.w700,
+                  ),
                   textAlign: TextAlign.center,
                 )
               ],
@@ -87,7 +92,7 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                 children: [
                   ItemCaracter(
                     image: 'caracter_1.gif',
-                    title: 'Pengertian Moral',
+                    title: '1. Pengertian Moral',
                     isActive: state.activeCPMK == 1,
                     isCompleted: state.activeCPMK > 1,
                     onPressed: () {
@@ -104,7 +109,7 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                   ),
                   ItemCaracter(
                     image: 'caracter_2.gif',
-                    title: 'Keterkaitan Nilai, Moral & Karakter',
+                    title: '2. Keterkaitan Nilai, Moral & Karakter',
                     isActive: state.activeCPMK == 2,
                     isCompleted: state.activeCPMK > 2,
                     onPressed: () {
@@ -122,7 +127,7 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                   ),
                   ItemCaracter(
                     image: 'caracter_3.gif',
-                    title: 'Kawasan Moral',
+                    title: '3. Kawasan Moral',
                     isActive: state.activeCPMK == 3,
                     isCompleted: state.activeCPMK > 3,
                     onPressed: () {
@@ -140,7 +145,7 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                   ),
                   ItemCaracter(
                     image: 'caracter_4.gif',
-                    title: 'Filsafat Nilai & Moral',
+                    title: '4. Filsafat Nilai & Moral',
                     isActive: state.activeCPMK == 4,
                     isCompleted: state.activeCPMK > 4,
                     onPressed: () {
@@ -158,7 +163,7 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                   ),
                   ItemCaracter(
                     image: 'caracter_5.gif',
-                    title: 'Pendidikan Nilai di Sekolah',
+                    title: '5. Pendidikan Nilai di Sekolah',
                     isActive: state.activeCPMK == 5,
                     isCompleted: state.activeCPMK > 5,
                     onPressed: () {
