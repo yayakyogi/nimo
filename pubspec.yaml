@@ -75,6 +75,7 @@ flutter:
     - assets/images/materi_cpmk3/
     - assets/images/materi_cpmk4/
     - assets/images/materi_cpmk5/
+    - assets/images/ketentuan/
 
   fonts:
     - family: Permanent Marker

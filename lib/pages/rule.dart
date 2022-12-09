@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nimo/pages/choose_caracter.dart';
+import 'package:nimo/pages/provision.dart';
 import 'package:nimo/themes.dart';
 import 'package:nimo/utils/button_willpopup.dart';
 import 'package:nimo/utils/page_transition.dart';
@@ -55,14 +56,16 @@ class _RuleState extends State<Rule> {
 
     // widget title
     Widget title() {
-      return Container(
-        margin: const EdgeInsets.only(bottom: 25, top: 30),
-        child: Text(
-          'Aturan Permainan',
-          style: fontPlay.copyWith(
-            fontSize: 32,
-            color: whiteColor,
-            fontWeight: medium,
+      return Center(
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 25, top: 20),
+          child: Text(
+            'Aturan Permainan',
+            style: fontPlay.copyWith(
+              fontSize: 32,
+              color: whiteColor,
+              fontWeight: medium,
+            ),
           ),
         ),
       );
@@ -81,17 +84,30 @@ class _RuleState extends State<Rule> {
         child: Column(
           children: [
             ruleContent(
-              rule: '1. Pilih karakter',
+              rule: '1. Tekan Menu "Ketentuan"',
             ),
             ruleContent(
-              rule: '2. Pilih materi & soal yang disediakan',
+              rule: '2. Tekan Menu "Mulai"',
             ),
             ruleContent(
-              rule: '3. Jawab pertanyaan secara urut sesuai level',
+              rule: '3.	Tekan Menu “Karakter NiMo” Paling Kiri',
             ),
             ruleContent(
               rule:
-                  '4. Klik tombol "Simpan Jawaban" jika sudah selesai menjawab',
+                  '4.	Tekan Ikon “Peti” Awal untuk Materi & Video Pembelajaran',
+            ),
+            ruleContent(
+              rule:
+                  '5.	Tekan Ikon “Peti” Selanjutnya Masuk “Soal Pertanyaan” Secara Urut Sesuai Level',
+            ),
+            ruleContent(
+              rule: '6.	Teka Menu “Simpan Jawaban” ',
+            ),
+            ruleContent(
+              rule: '7.	Dapatkan Skor Per-Level',
+            ),
+            ruleContent(
+              rule: '8.	Resume Skor Akhir Keseluruhan',
             ),
           ],
         ),
@@ -112,7 +128,10 @@ class _RuleState extends State<Rule> {
           ),
           const SizedBox(width: 20),
           ButtonSubmit(
-            onPressed: () {},
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Provision()),
+            ),
             title: 'Ketentuan',
           ),
         ],
@@ -121,11 +140,12 @@ class _RuleState extends State<Rule> {
 
     // widget body
     Widget body() {
-      return Column(
+      return ListView(
         children: [
           title(),
           rule(),
           buttonSubmit(),
+          const SizedBox(height: 25),
         ],
       );
     }

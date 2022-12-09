@@ -112,7 +112,7 @@ class _HomeState extends State<Home> {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Text(
-          'Powered By\nUnit Layanan Disabilitas - Universitas Bhinneka PGRI',
+          'Powered By\nPUSAT STUDI LAYANAN DISABILITAS (PSLD) - Universitas Bhinneka PGRI',
           style: fontPlay.copyWith(
             fontSize: 10,
             fontWeight: semibold,
