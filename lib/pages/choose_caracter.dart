@@ -14,7 +14,9 @@ import 'package:nimo/utils/button_willpopup.dart';
 import 'package:nimo/utils/page_transition.dart';
 import 'package:nimo/widgets/background_transparent.dart';
 import 'package:nimo/widgets/button_back.dart';
+import 'package:nimo/widgets/button_submit.dart';
 import 'package:nimo/widgets/item_caracter.dart';
+import 'package:lottie/lottie.dart';
 
 class ChooseCaracter extends StatefulWidget {
   const ChooseCaracter({Key? key}) : super(key: key);
@@ -82,7 +84,7 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
       return StatefulBuilder(
         builder: (context, setState) => Container(
           padding: const EdgeInsets.symmetric(horizontal: 60),
-          margin: const EdgeInsets.only(bottom: 40),
+          margin: const EdgeInsets.only(bottom: 10),
           child: BlocBuilder<CpmkActiveBloc, CpmkActiveState>(
             builder: (context, state) {
               log(state.activeCPMK.toString());
@@ -187,6 +189,98 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
       );
     }
 
+    Future dialog() {
+      return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            content: SizedBox(
+              width: 250,
+              child: BlocBuilder<CpmkActiveBloc, CpmkActiveState>(
+                builder: (context, state) {
+                  return state.activeCPMK > 5
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: state.scoreGlobal < 50
+                                  ? Image.asset(
+                                      'assets/images/emoticon_good.gif',
+                                      width: 100,
+                                      height: 100,
+                                    )
+                                  : Image.asset(
+                                      'assets/images/emoticon_very_good.gif',
+                                      width: 100,
+                                      height: 100,
+                                    ),
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              state.scoreGlobal < 50
+                                  ? 'Tetap Semangat dan Terus Belajar, Jangan Putus Asa'
+                                  : 'Hebat, Pertahankan Terus Pencapaianmu',
+                              style: TextStyle(
+                                fontWeight: semibold,
+                                fontSize: 18,
+                                color: whiteColor,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 20),
+                            ButtonSubmit(
+                                title: 'Mulai permainan lagi',
+                                onPressed: () {
+                                  context.read<CpmkActiveBloc>().add(CpmkActive(
+                                        cpmkActive: 1,
+                                        caracter: '',
+                                        scoreGlobal: 0,
+                                      ));
+                                  Navigator.pop(context);
+                                }),
+                          ],
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Lottie.asset(
+                              'assets/lottie/lottie-error.json',
+                              width: 100,
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              'Untuk melihat skor akhir, Harap selesaikan semua level terlebih dahulu',
+                              style: TextStyle(
+                                fontWeight: semibold,
+                                fontSize: 18,
+                                color: whiteColor,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 20),
+                            ButtonSubmit(
+                                title: 'Tutup',
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                }),
+                          ],
+                        );
+                },
+              ),
+            ),
+          );
+        },
+      );
+    }
+
     return WillPopScope(
       onWillPop: () => onBackPressed(context: context),
       child: Scaffold(
@@ -206,6 +300,10 @@ class _ChooseCaracterState extends State<ChooseCaracter> {
                 children: [
                   header(),
                   chooseCaracter(),
+                  ButtonSubmit(
+                    title: 'Lihat Skor',
+                    onPressed: () => dialog(),
+                  ),
                 ],
               ),
             ],
